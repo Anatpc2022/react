@@ -4,6 +4,7 @@ import TemplateExpression from './components/TemplateExpression';
 import MyComponents from './components/MyComponents';
 import Events from './components/Events';
 import Data from './components/data';
+import ListRender from './components/ListRender';
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <MyComponents/>
         <Events/>
         <Data/>
+        <ListRender/>
       </div>   
   )
 }
