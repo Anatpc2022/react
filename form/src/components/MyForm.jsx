@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./MyForm.css";
 
 const MyForm = () => {
-    //3 - Gerenciamento de dados
+    // 3 - Gerenciamento de dados
     const [name, setName] = useState();
     const [email, setEmail] = useState();
 
@@ -11,9 +11,17 @@ const MyForm = () => {
     }
     console.log(name, email);
 
+    // função do envio de formulario
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        console.log(name, email);
+    }
+
     return (<div>
-        {/*1 - Criação de formulário */}
-        <form>
+        {/* 1 - Criação de formulário */}
+        {/* 5 - Envio de formulário */}
+        <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="name">Nome:</label>
                 <input 
@@ -23,14 +31,14 @@ const MyForm = () => {
                 onChange={handleName}
                 />
             </div>
-            {/*2 - Label envolvendo input */}
+            {/* 2 - Label envolvendo input */}
             <label>
                 <span>E-mail</span>
                 <input 
                 type="email" 
                 name="email" 
                 placeholder="Digite seu email"
-                //4 - Simplificando manipulação
+                // 4 - Simplificando manipulação
                 onChange={(e) => setEmail(e.target.value)} 
                 />
             </label>
