@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useFetch } from './hooks/useFetch'
 const url = "http://localhost:3000/products"
 
 import './App.css'
@@ -7,18 +8,19 @@ function App() {
   // 1 - resgatando dados
   const [products, setProducts] = useState([])
 
-  useEffect(() => {
+  // 4 - custom hook
+  const { data: items } = useFetch(url)
 
-    async function getData() {
-      const res = await fetch(url)
+  //  useEffect(() => {
+  //    async function getData() {
+  //      const res = await fetch(url)
 
-      const data = await res.json()
+  //      const data = await res.json()
 
-      setProducts(data)
-    }
-    getData()
-
-  }, [])
+  //      setProducts(data)
+  //    }
+  //    getData()
+  //  }, [])
 
   // 2 - envio de dados
   const [name, setName] = useState("")
@@ -41,7 +43,7 @@ function App() {
     })
     // 3 - carregamento dinamico
     const addedProduct = await res.json()
-  
+
     setProducts((prevProducts) => [...prevProducts, addedProduct])
   }
 
@@ -50,23 +52,24 @@ function App() {
       <h1>HTTP em REACT</h1>
       {/* 1 - resgate de dados */}
       <ul>
-        {products.map((product) => (
-          <li key={product.id}>{product.name} - R${product.price}</li>
-        ))}
+        {items &&
+          items.map((product) => (
+            <li key={product.id}>{product.name} - R${product.price}</li>
+          ))}
       </ul>
       {/* 2 - enviando dados */}
       <div className="add-product">
-          <form onSubmit={handleSubmit}>
-            <label>
-              <span>Nome</span>
-              <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-            </label>
-            <label>
-              <span>Preço</span>
-              <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} />
-            </label>
-            <input type="submit" value="Enviar" />
-          </form>
+        <form onSubmit={handleSubmit}>
+          <label>
+            <span>Nome</span>
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+          </label>
+          <label>
+            <span>Preço</span>
+            <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} />
+          </label>
+          <input type="submit" value="Enviar" />
+        </form>
       </div>
     </div>
   )
