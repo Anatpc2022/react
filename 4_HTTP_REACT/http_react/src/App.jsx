@@ -55,7 +55,7 @@ function App() {
       <h1>HTTP em REACT</h1>
       {/* 6 - Loading */}
       {loading && <p>Carregando...</p>}
-      
+
       {/* 1 - resgate de dados */}
       <ul>
         {items &&
@@ -74,7 +74,10 @@ function App() {
             <span>Preço</span>
             <input type="text" value={price} onChange={(e) => setPrice(e.target.value)} />
           </label>
-          <input type="submit" value="Enviar" />
+          {/* <input type="submit" value="Enviar" /> */}
+          {/* 7 - loading post */}
+          {loading && <input type="submit" disabled value="Aguarde"/>}
+          {!loading && <input type="submit" value="Enviar"/>}
         </form>
       </div>
     </div>

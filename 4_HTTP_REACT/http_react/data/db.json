@@ -39,6 +39,16 @@
       "name": "teste post",
       "price": "10",
       "id": 12
+    },
+    {
+      "name": "testando",
+      "price": "25",
+      "id": 13
+    },
+    {
+      "name": "testando 2",
+      "price": "26",
+      "id": 14
     }
   ]
 }
